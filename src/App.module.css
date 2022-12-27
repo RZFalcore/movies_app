@@ -1,3 +1,6 @@
 .app {
     background-color: lightgray;
 }
+.app h1 {
+    text-align: center;
+}
