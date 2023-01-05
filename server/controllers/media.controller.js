@@ -16,7 +16,7 @@ const getList = async (req, res) => {
       page,
     });
 
-    return responseHandler.ok(res, list);
+    responseHandler.ok(res, list);
   } catch {
     responseHandler.error(res);
   }
@@ -28,7 +28,7 @@ const getGenres = async (req, res) => {
 
     const genres = await tmdbApi.mediaGenres({ mediaType });
 
-    return responseHandler.ok(res, genres);
+    responseHandler.ok(res, genres);
   } catch {
     responseHandler.error(res);
   }
@@ -45,7 +45,7 @@ const search = async (req, res) => {
       page,
     });
 
-    return responseHandler.ok(res, searchData);
+     responseHandler.ok(res, searchData);
   } catch {
     responseHandler.error(res);
   }
