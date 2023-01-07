@@ -8,8 +8,7 @@ import tokenMiddleware from "../middlewares/token.middleware.js";
 
 const router = express.Router();
 
-router(
-  "post",
+router.post(
   body("username")
     .exists()
     .withMessage("username is required")
