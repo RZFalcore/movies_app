@@ -35,7 +35,20 @@ const userApi = {
   },
   getInfo: async () => {
     try {
-      const response = await publicClient.post(userEndpoints.getInfo);
+      const response = await privateClient.post(userEndpoints.getInfo);
+      return { response };
+    } catch (error) {
+      return { err };
+    }
+  },
+  passwordUpdate: async ({ password, newPassword, confirmPassword }) => {
+    try {
+      const response = await privateClient.put(userEndpoints.signup, {
+        password,
+        newPassword,
+        confirmPassword,
+      });
+
       return { response };
     } catch (error) {
       return { err };
