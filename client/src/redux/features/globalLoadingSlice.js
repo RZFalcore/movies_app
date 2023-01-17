@@ -6,7 +6,9 @@ export const globalLoadingSlice = createSlice({
     globalLoading: false,
   },
   reducers: {
-    setGlobalLoading: (state, action) => (state.authModalOpen = action.payload),
+    setGlobalLoading: (state, action) => {
+      state.authModalOpen = action.payload;
+    },
   },
 });
 

@@ -6,7 +6,9 @@ export const appStateSlice = createSlice({
     appState: {},
   },
   reducers: {
-    setAppState: (state, action) => (state.appState = action.payload),
+    setAppState: (state, action) => {
+      state.appState = action.payload;
+    },
   },
 });
 
