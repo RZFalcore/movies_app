@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const appStateSlice = createSlice({
   name: "AppState",
   initialState: {
-    appState: {},
+    appState: [],
   },
   reducers: {
     setAppState: (state, action) => {

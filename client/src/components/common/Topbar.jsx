@@ -18,6 +18,7 @@ import { themeModes } from "../../configs/theme.configs.js";
 import { setAuthModalOpen } from "../../redux/features/authModalSlice.js";
 import { setThemeMode } from "../../redux/features/themeModeSlice.js";
 import Logo from "./Logo";
+import switchBaseClasses from "@mui/material/internal/switchBaseClasses";
 
 const ScrollAppBar = ({ children, window }) => {
   const { themeMode } = useSelector((state) => state.themeMode);
@@ -28,13 +29,20 @@ const ScrollAppBar = ({ children, window }) => {
     target: window ? window() : undefined,
   });
 
-  // Potential buggy place
-  const color =
-    themeMode === themeModes.dark ? "primary.contrastText" : "text.primary";
-  const backgroundColor =
-    themeMode === themeModes.dark ? "transparent" : "background.paper";
-  //----------------------
-  return cloneElement(children, { sx: { color, backgroundColor } });
+  return cloneElement(children, {
+    sx: {
+      color: trigger
+        ? "text.primary"
+        : themeMode === themeModes.dark
+        ? "primary.contrastText"
+        : "text.primary",
+      backgroundColor: trigger
+        ? "background.paper"
+        : themeMode === themeModes.dark
+        ? "transparent"
+        : "background.paper",
+    },
+  });
 };
 const Topbar = () => {
   const { user } = useSelector((state) => state.user);
@@ -77,6 +85,31 @@ const Topbar = () => {
                 <Box sx={{ marginRight: "30px" }}>
                   <Logo />
                 </Box>
+                {menuConfigs.main.map((item, index) => (
+                  <Button
+                    key={index}
+                    sx={{
+                      color: appState.includes(item.state)
+                        ? "primary.contrastText"
+                        : "inherit",
+                      mr: 2,
+                    }}
+                    component={Link}
+                    to={item.path}
+                    variant={
+                      appState.includes(item.state) ? "contained" : "text"
+                    }
+                  >
+                    {item.display}
+                  </Button>
+                ))}
+                <IconButton sx={{ color: "inherit" }} onClick={onSwitchTheme}>
+                  {themeMode === themeModes.dark ? (
+                    <DarkModeOutlinedIcon />
+                  ) : (
+                    <WbSunnyOutlinedIcon />
+                  )}
+                </IconButton>
               </Box>
             </Stack>
           </Toolbar>
