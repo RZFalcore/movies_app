@@ -21,11 +21,69 @@ import Logo from "./Logo";
 
 const ScrollAppBar = ({ children, window }) => {
   const { themeMode } = useSelector((state) => state.themeMode);
-  return <></>;
-};
 
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 50,
+    target: window ? window() : undefined,
+  });
+
+  // Potential buggy place
+  const color =
+    themeMode === themeModes.dark ? "primary.contrastText" : "text.primary";
+  const backgroundColor =
+    themeMode === themeModes.dark ? "transparent" : "background.paper";
+  //----------------------
+  return cloneElement(children, { sx: { color, backgroundColor } });
+};
 const Topbar = () => {
-  return <></>;
+  const { user } = useSelector((state) => state.user);
+  const { appState } = useSelector((state) => state.appState);
+  const { themeMode } = useSelector((state) => state.themeMode);
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const onSwitchTheme = () => {
+    const theme =
+      themeMode === themeModes.dark ? themeModes.light : themeModes.dark;
+    dispatch(setThemeMode(theme));
+  };
+  return (
+    <>
+      <ScrollAppBar>
+        <AppBar elevation={0} sx={{ zIndex: 9999 }}>
+          <Toolbar
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
+          >
+            <Stack direction="row" spacing={1} alignItems="center">
+              <IconButton
+                color="inherit"
+                sx={{ mr: 2, display: { md: "none" } }}
+              >
+                <MenuIcon></MenuIcon>
+              </IconButton>
+
+              <Box sx={{ display: { xs: "inline-block", md: "none" } }}>
+                <Logo />
+              </Box>
+
+              <Box
+                flexGrow={1}
+                alignItems="center"
+                display={{ xs: "none", md: "flex" }}
+              >
+                <Box sx={{ marginRight: "30px" }}>
+                  <Logo />
+                </Box>
+              </Box>
+            </Stack>
+          </Toolbar>
+        </AppBar>
+      </ScrollAppBar>
+    </>
+  );
 };
 
 export default Topbar;
