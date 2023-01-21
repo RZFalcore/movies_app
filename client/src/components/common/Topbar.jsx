@@ -13,12 +13,13 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import menuConfigs from "../../configs/menu.configs.js";
 import { themeModes } from "../../configs/theme.configs.js";
 import { setAuthModalOpen } from "../../redux/features/authModalSlice.js";
 import { setThemeMode } from "../../redux/features/themeModeSlice.js";
 import Logo from "./Logo";
-import switchBaseClasses from "@mui/material/internal/switchBaseClasses";
+import UserMenu from "./UserMenu.jsx";
 
 const ScrollAppBar = ({ children, window }) => {
   const { themeMode } = useSelector((state) => state.themeMode);
@@ -112,6 +113,7 @@ const Topbar = () => {
                 </IconButton>
               </Box>
             </Stack>
+            <UserMenu />
           </Toolbar>
         </AppBar>
       </ScrollAppBar>
