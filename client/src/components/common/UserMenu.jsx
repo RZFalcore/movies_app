@@ -29,6 +29,31 @@ const UserMenu = () => {
           >
             {user.displayName}
           </Typography>
+          <Menu
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            onClose={setAnchorEl(null)}
+            PaperProps={{ sx: { padding: 0 } }}
+          >
+            {menuConfigs.user.map((item, index) => (
+              <ListItemButton
+                component={Link}
+                to={item.path}
+                key={index}
+                onClick={setAnchorEl(null)}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography textTransform="uppercase">
+                      {item.display}
+                    </Typography>
+                  }
+                ></ListItemText>
+              </ListItemButton>
+            ))}
+          </Menu>
         </>
       )}
     </>
