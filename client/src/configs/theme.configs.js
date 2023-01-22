@@ -24,11 +24,9 @@ const themeConfigs = {
         : {
             primary: {
               main: "#ff0000",
-              contrastText: "#ffffff",
             },
             secondary: {
               main: "#f44336",
-              contrastText: "#ffffff",
             },
             background: { default: colors.grey["100"] },
           };

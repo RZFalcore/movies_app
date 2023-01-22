@@ -7,6 +7,7 @@ import {
   Stack,
   Toolbar,
   Typography,
+  List,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -117,11 +118,33 @@ const Sidebar = ({ open, toggleSidebar }) => {
               <WbSunnyOutlinedIcon />
             )}
           </ListItemIcon>
+          <ListItemText
+            disableTypography
+            primary={
+              <Typography textTransform="uppercase">
+                {themeMode === themeModes.dark ? "dark mode" : "light mode"}
+              </Typography>
+            }
+          ></ListItemText>
         </ListItemButton>
       </List>
     </>
   );
-  return <>Sidebar</>;
+  return (
+    <Drawer
+      open={open}
+      onClose={() => toggleSidebar(false)}
+      sx={{
+        "& .MuiDrawer-Paper": {
+          boxSizing: "border-box",
+          width: sideBarWidth,
+          borderRight: 0,
+        },
+      }}
+    >
+      {drawer}
+    </Drawer>
+  );
 };
 
 export default Sidebar;
