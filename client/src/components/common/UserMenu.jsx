@@ -50,9 +50,23 @@ const UserMenu = () => {
                       {item.display}
                     </Typography>
                   }
-                ></ListItemText>
+                />
               </ListItemButton>
             ))}
+            <ListItemButton
+              sx={{ borderRadius: "10px" }}
+              onCLick={setUser(null)}
+            >
+              <ListItemIcon>
+                <LogoutOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography textTransform="uppercase">Sign out</Typography>
+                }
+              />
+            </ListItemButton>
           </Menu>
         </>
       )}

@@ -77,43 +77,48 @@ const Topbar = () => {
               <Box sx={{ display: { xs: "inline-block", md: "none" } }}>
                 <Logo />
               </Box>
-
-              <Box
-                flexGrow={1}
-                alignItems="center"
-                display={{ xs: "none", md: "flex" }}
-              >
-                <Box sx={{ marginRight: "30px" }}>
-                  <Logo />
-                </Box>
-                {menuConfigs.main.map((item, index) => (
-                  <Button
-                    key={index}
-                    sx={{
-                      color: appState.includes(item.state)
-                        ? "primary.contrastText"
-                        : "inherit",
-                      mr: 2,
-                    }}
-                    component={Link}
-                    to={item.path}
-                    variant={
-                      appState.includes(item.state) ? "contained" : "text"
-                    }
-                  >
-                    {item.display}
-                  </Button>
-                ))}
-                <IconButton sx={{ color: "inherit" }} onClick={onSwitchTheme}>
-                  {themeMode === themeModes.dark ? (
-                    <DarkModeOutlinedIcon />
-                  ) : (
-                    <WbSunnyOutlinedIcon />
-                  )}
-                </IconButton>
-              </Box>
             </Stack>
-            <UserMenu />
+            <Box
+              flexGrow={1}
+              alignItems="center"
+              display={{ xs: "none", md: "flex" }}
+            >
+              <Box sx={{ marginRight: "30px" }}>
+                <Logo />
+              </Box>
+              {menuConfigs.main.map((item, index) => (
+                <Button
+                  key={index}
+                  sx={{
+                    color: appState.includes(item.state)
+                      ? "primary.contrastText"
+                      : "inherit",
+                    mr: 2,
+                  }}
+                  component={Link}
+                  to={item.path}
+                  variant={appState.includes(item.state) ? "contained" : "text"}
+                >
+                  {item.display}
+                </Button>
+              ))}
+              <IconButton sx={{ color: "inherit" }} onClick={onSwitchTheme}>
+                {themeMode === themeModes.dark ? (
+                  <DarkModeOutlinedIcon />
+                ) : (
+                  <WbSunnyOutlinedIcon />
+                )}
+              </IconButton>
+            </Box>
+
+            <Stack spacing={3} direction="row" alignItems="center">
+              {!user && (
+                <Button variant="contained" onClick={setAuthModalOpen(true)}>
+                  sign in
+                </Button>
+              )}
+            </Stack>
+            {user && <UserMenu />}
           </Toolbar>
         </AppBar>
       </ScrollAppBar>
