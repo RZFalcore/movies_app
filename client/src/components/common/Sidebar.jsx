@@ -110,7 +110,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
         <Typography variant="h6" marginBottom="20px" textTransform="uppercase">
           theme
         </Typography>
-        <ListItemButton>
+        <ListItemButton onClick={onSwitchTheme}>
           <ListItemIcon>
             {themeMode === themeModes.dark ? (
               <DarkModeOutlinedIcon />
