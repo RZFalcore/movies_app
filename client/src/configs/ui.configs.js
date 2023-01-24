@@ -24,7 +24,7 @@ const uiConfigs = {
       textAlign: textAlign || "justify",
       display: "-webkit-box",
       overflow: "hidden",
-      WebkitBoxOriental: "vertical",
+      WebkitBoxOrient: "vertical",
       WebkitLineClamp: lines,
     }),
     mainContent: {

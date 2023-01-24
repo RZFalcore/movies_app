@@ -30,12 +30,14 @@ const themeConfigs = {
             },
             background: { default: colors.grey["100"] },
           };
-    return createTheme({ palette: { mode, ...customPalette } });
-  },
-  components: {
-    MuiButton: {
-      defaultProps: { disableElevation: true },
-    },
+    return createTheme({
+      palette: { mode, ...customPalette },
+      components: {
+        MuiButton: {
+          defaultProps: { disableElevation: true },
+        },
+      },
+    });
   },
 };
 
