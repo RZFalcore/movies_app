@@ -119,7 +119,10 @@ const Topbar = () => {
 
             <Stack spacing={3} direction="row" alignItems="center">
               {!user && (
-                <Button variant="contained" onClick={setAuthModalOpen(true)}>
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(setAuthModalOpen(true))}
+                >
                   sign in
                 </Button>
               )}

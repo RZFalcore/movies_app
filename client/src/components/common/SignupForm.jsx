@@ -1,7 +1,7 @@
 import React from "react";
 
 const SignupForm = ({ switchAuthState }) => {
-  return <></>;
+  return <>Sign up</>;
 };
 
 export default SignupForm;

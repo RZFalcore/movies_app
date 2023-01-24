@@ -34,7 +34,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
     dispatch(setThemeMode(theme));
   };
 
-  const drawer = () => (
+  const drawer = (
     <>
       <Toolbar sx={{ paddingY: "20px", color: "text.primary" }}>
         <Stack width="100%" direction="row" justifyContent="center">
@@ -45,6 +45,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
         <Typography variant="h6" marginBottom="20px" textTransform="uppercase">
           menu
         </Typography>
+
         {menuConfigs.main.map((item, index) => (
           <ListItemButton
             key={index}
