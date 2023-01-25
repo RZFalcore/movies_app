@@ -12,7 +12,7 @@ import { setUser } from "../../redux/features/userSlice.js";
 const SigninForm = ({ switchAuthState }) => {
   const dispatch = useDispatch();
     const [isLoginRequest, setIsLoginRequest] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState();
     const signinForm = useFormik({
       initialValues: {
         username: "",
@@ -43,25 +43,65 @@ const SigninForm = ({ switchAuthState }) => {
         if (err) setErrorMessage(err.message);
       },
     });
-  return (
-    <Box component="form" onSubmit={signinForm.handlerSubmit}>
-      <Stack spacing={3}>
-        <TextField
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={signinForm.values.username}
-          onChange={signinForm.handleChange}
-          color="success"
-          error={
-            signinForm.touched.username &&
-            signinForm.errors.username !== undefined
-          }
-          helperText={signinForm.touched.username && signinForm.errors.username}
-        />
-      </Stack>
-    </Box>
-  );
+    return (
+      <Box component="form" onSubmit={signinForm.handleSubmit}>
+        <Stack spacing={3}>
+          <TextField
+            type="text"
+            placeholder="username"
+            name="username"
+            value={signinForm.values.username}
+            onChange={signinForm.handleChange}
+            color="success"
+            error={
+              signinForm.touched.username &&
+              signinForm.errors.username !== undefined
+            }
+            helperText={
+              signinForm.touched.username && signinForm.errors.username
+            }
+          />
+          <TextField
+            type="password"
+            placeholder="password"
+            name="password"
+            value={signinForm.values.password}
+            onChange={signinForm.handleChange}
+            color="success"
+            error={
+              signinForm.touched.password &&
+              signinForm.errors.password !== undefined
+            }
+            helperText={
+              signinForm.touched.password && signinForm.errors.password
+            }
+          />
+        </Stack>
+
+        <LoadingButton
+          type="submit"
+          fullWidth
+          size="large"
+          variant="contained"
+          sx={{ marginTop: 4 }}
+          loading={isLoginRequest}
+        >
+          sign in
+        </LoadingButton>
+
+        <Button fullWidth sx={{ marginTop: 1 }} onClick={switchAuthState}>
+          sign up
+        </Button>
+
+        {errorMessage && (
+          <Box sx={{ marginTop: 2 }}>
+            <Alert severity="error" variant="outlined">
+              {errorMessage}
+            </Alert>
+          </Box>
+        )}
+      </Box>
+    );
 };
 
 export default SigninForm;
