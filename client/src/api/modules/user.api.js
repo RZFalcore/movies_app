@@ -17,7 +17,7 @@ const userApi = {
       });
       return { response };
     } catch (error) {
-      return { err };
+      return { error };
     }
   },
   signup: async ({ username, password, confirmPassword, displayName }) => {
@@ -30,7 +30,7 @@ const userApi = {
       });
       return { response };
     } catch (error) {
-      return { err };
+      return { error };
     }
   },
   getInfo: async () => {
@@ -38,7 +38,7 @@ const userApi = {
       const response = await privateClient.post(userEndpoints.getInfo);
       return { response };
     } catch (error) {
-      return { err };
+      return { error };
     }
   },
   passwordUpdate: async ({ password, newPassword, confirmPassword }) => {
@@ -51,7 +51,7 @@ const userApi = {
 
       return { response };
     } catch (error) {
-      return { err };
+      return { error };
     }
   },
 };

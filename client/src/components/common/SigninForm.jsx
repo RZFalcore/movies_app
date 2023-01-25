@@ -43,7 +43,25 @@ const SigninForm = ({ switchAuthState }) => {
         if (err) setErrorMessage(err.message);
       },
     });
-  return <>Sign in</>;
+  return (
+    <Box component="form" onSubmit={signinForm.handlerSubmit}>
+      <Stack spacing={3}>
+        <TextField
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={signinForm.values.username}
+          onChange={signinForm.handleChange}
+          color="success"
+          error={
+            signinForm.touched.username &&
+            signinForm.errors.username !== undefined
+          }
+          helperText={signinForm.touched.username && signinForm.errors.username}
+        />
+      </Stack>
+    </Box>
+  );
 };
 
 export default SigninForm;
