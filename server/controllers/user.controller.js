@@ -19,6 +19,7 @@ const singup = async (req, res) => {
 
     await user.save();
 
+    // NO DATA----------------------------
     const token = jsonwebtoken.sign(
       { data: user.id },
       process.env.TOKEN_SECRET,

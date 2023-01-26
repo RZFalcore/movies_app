@@ -41,6 +41,8 @@ const SignupForm = ({ switchAuthState }) => {
       const { res, err } = await userApi.signup(data);
       setIsLoginRequest(false);
 
+      if (res) console.log(res, err);
+
       if (res) {
         signinForm.resetForm();
         dispatch(setUser(res));
