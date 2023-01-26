@@ -34,6 +34,7 @@ const singup = async (req, res) => {
 
 const signin = async (req, res) => {
   try {
+    console.log("userController signin start");
     const { username, password } = req.body;
 
     const user = await userModel

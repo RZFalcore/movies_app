@@ -29,18 +29,21 @@ const SigninForm = ({ switchAuthState }) => {
     onSubmit: async (data) => {
       setErrorMessage(undefined);
       setIsLoginRequest(true);
-      console.log("Form submit");
-      const { res, err } = await userApi.signin(data);
+
+      console.log("Form submit", data);
+
+      const { response, error } = await userApi.signin(data);
       setIsLoginRequest(false);
 
-      if (res) {
+      console.log(response, error);
+      if (response) {
         signinForm.resetForm();
-        dispatch(setUser(res));
+        dispatch(setUser(response));
         dispatch(setAuthModalOpen(false));
         toast.success("Sign in successfully.");
       }
 
-      if (err) setErrorMessage(err.message);
+      if (error) setErrorMessage(error.message);
     },
   });
     return (

@@ -38,19 +38,19 @@ const SignupForm = ({ switchAuthState }) => {
       setErrorMessage(undefined);
       setIsLoginRequest(true);
       console.log("Form submit");
-      const { res, err } = await userApi.signup(data);
+      const { response, error } = await userApi.signup(data);
       setIsLoginRequest(false);
 
-      if (res) console.log(res, err);
+      if (response) console.log(response, error);
 
-      if (res) {
+      if (response) {
         signinForm.resetForm();
-        dispatch(setUser(res));
+        dispatch(setUser(response));
         dispatch(setAuthModalOpen(false));
         toast.success("Sign in successfully.");
       }
 
-      if (err) setErrorMessage(err.message);
+      if (error) setErrorMessage(error.message);
     },
   });
   return (
