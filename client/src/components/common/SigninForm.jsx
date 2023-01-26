@@ -11,38 +11,38 @@ import { setUser } from "../../redux/features/userSlice.js";
 
 const SigninForm = ({ switchAuthState }) => {
   const dispatch = useDispatch();
-    const [isLoginRequest, setIsLoginRequest] = useState(false);
-    const [errorMessage, setErrorMessage] = useState();
-    const signinForm = useFormik({
-      initialValues: {
-        username: "",
-        password: "",
-      },
-      validationSchema: Yup.object({
-        username: Yup.string()
-          .min(8, "User name must be at least 8 characters.")
-          .required("User name is required."),
-        password: Yup.string()
-          .min(8, "Password must be at least 8 characters.")
-          .required("Password is required."),
-      }),
-      onSubmit: async (data) => {
-        setErrorMessage(undefined);
-        setIsLoginRequest(true);
+  const [isLoginRequest, setIsLoginRequest] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  const signinForm = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      username: Yup.string()
+        .min(8, "User name must be at least 8 characters.")
+        .required("User name is required."),
+      password: Yup.string()
+        .min(8, "Password must be at least 8 characters.")
+        .required("Password is required."),
+    }),
+    onSubmit: async (data) => {
+      setErrorMessage(undefined);
+      setIsLoginRequest(true);
+      console.log("Form submit");
+      const { res, err } = await userApi.signin(data);
+      setIsLoginRequest(false);
 
-        const { res, err } = await userApi.signin(data);
-        setIsLoginRequest(false);
+      if (res) {
+        signinForm.resetForm();
+        dispatch(setUser(res));
+        dispatch(setAuthModalOpen(false));
+        toast.success("Sign in successfully.");
+      }
 
-        if (res) {
-          signinForm.resetForm();
-          dispatch(setUser(res));
-          dispatch(setAuthModalOpen(false));
-          toast.success("Sign in successfully.");
-        }
-
-        if (err) setErrorMessage(err.message);
-      },
-    });
+      if (err) setErrorMessage(err.message);
+    },
+  });
     return (
       <Box component="form" onSubmit={signinForm.handleSubmit}>
         <Stack spacing={3}>
