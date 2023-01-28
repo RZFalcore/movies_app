@@ -21,10 +21,12 @@ publicClient.interceptors.request.use(async (config) => {
 
 publicClient.interceptors.response.use(
   (response) => {
+    console.log(" publicClient response", response);
     if (response && response.data) return response.data;
     return response;
   },
   (err) => {
+    console.log(err);
     throw err.response.data;
   }
 );

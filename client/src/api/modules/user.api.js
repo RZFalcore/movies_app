@@ -22,12 +22,6 @@ const userApi = {
   },
   signup: async ({ username, password, confirmPassword, displayName }) => {
     try {
-      console.log("User.api signup", {
-        username,
-        password,
-        confirmPassword,
-        displayName,
-      });
       const response = await publicClient.post(userEndpoints.signup, {
         username,
         password,

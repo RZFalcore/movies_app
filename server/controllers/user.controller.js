@@ -5,7 +5,7 @@ import responseHandler from "../handlers/response.handler.js";
 const singup = async (req, res) => {
   try {
     const { username, password, displayName } = req.body;
-
+    console.log(req);
     const isUserExist = await userModel.findOne({ username });
 
     if (isUserExist)
