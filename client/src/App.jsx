@@ -11,6 +11,7 @@ import PageWrapper from "./components/common/PageWrapper";
 import routes from "./routes/routes";
 
 import "react-toastify/dist/ReactToastify.css";
+// import "./App.module.css";
 
 const App = () => {
   const { themeMode } = useSelector((state) => state.themeMode);
