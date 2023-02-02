@@ -34,6 +34,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
 
   useEffect(() => {
     const getMedias = async () => {
+      dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getList({
         mediaType,
         mediaCategory,
@@ -43,9 +44,44 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
       if (err) toast.error(err.message);
       dispatch(setGlobalLoading(false));
     };
+
+    const getGenres = async () => {
+      dispatch(setGlobalLoading(true));
+      const { response, err } = await mediaApi.getList({
+        mediaType,
+      });
+      if (response) {
+        setGenres(response.genres);
+        getMedias();
+      }
+      if (err) {
+        toast.error(err.message);
+      }
+      dispatch(setGlobalLoading(false));
+    };
+
+    getGenres();
   }, [mediaType, mediaCategory, dispatch]);
 
-  return <>Hero slide</>;
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        color: "primary.contrastText",
+        "&::before": {
+          content: '""',
+          width: "100%",
+          height: "30%",
+          position: "absolute",
+          botom: 0,
+          left: 0,
+          zIndex: 2,
+          pointerEvent: "none",
+          ...uiConfigs.style.gradientBgImage[theme.pallete.mode],
+        },
+      }}
+    ></Box>
+  );
 };
 
 export default HeroSlide;

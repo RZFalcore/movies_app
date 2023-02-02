@@ -6,13 +6,14 @@ const baseURL = "http://127.0.0.1:5000/api/v1/";
 const privateClient = axios.create({
   baseURL,
   paramsSerializer: {
-    encode: (params) => queryString.stringify(params),
+    encode: (params) =>
+      queryString.stringify(params, { arrayFormat: "bracket" }),
   },
 });
 
 privateClient.interceptors.request.use(async (config) => {
   return {
-    config,
+    ...config,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

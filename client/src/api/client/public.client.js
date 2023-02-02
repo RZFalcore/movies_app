@@ -12,7 +12,7 @@ const publicClient = axios.create({
 
 publicClient.interceptors.request.use(async (config) => {
   return {
-    config,
+    ...config,
     headers: {
       "Content-Type": "application/json",
     },
@@ -27,7 +27,8 @@ publicClient.interceptors.response.use(
   },
   (err) => {
     console.log(err);
-    throw err.response.data;
+    // throw err.response.data;
+    throw err;
   }
 );
 

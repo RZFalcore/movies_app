@@ -15,6 +15,7 @@ const userApi = {
         username,
         password,
       });
+      console.log("USER API SIGNIN RES");
       return { response };
     } catch (error) {
       return { error };
