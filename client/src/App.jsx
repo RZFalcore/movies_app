@@ -11,6 +11,9 @@ import PageWrapper from "./components/common/PageWrapper";
 import routes from "./routes/routes";
 
 import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 // import "./App.module.css";
 
 const App = () => {

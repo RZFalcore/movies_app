@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { AutoPlay } from "swiper";
+import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toast } from "react-toastify";
 import PlayIconArrow from "@mui/icons-material/PlayArrow";
@@ -80,7 +80,35 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
           ...uiConfigs.style.gradientBgImage[theme.pallete.mode],
         },
       }}
-    ></Box>
+    >
+      <Swiper
+        grabCursor={true}
+        loop={true}
+        modules={[Autoplay]}
+        style={{ width: "100%", height: "max-content" }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+      >
+        {movies.map((movie, index) => (
+          <SwiperSlide key={index}>
+            <Box
+              sx={{
+                paddingTop: {
+                  xs: "130%",
+                  sm: "80%",
+                  md: "60%",
+                  lg: "45%",
+                },
+                backgroundPosition: "top",
+                backgroundSize: "cover",
+                backgroundImage: `url(${tmdbConfigs.backdropPath(
+                  movie.backdrop_path || movie.poster_path
+                )})`,
+              }}
+            ></Box>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
   );
 };
 
