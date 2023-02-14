@@ -77,7 +77,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
           left: 0,
           zIndex: 2,
           pointerEvent: "none",
-          ...uiConfigs.style.gradientBgImage[theme.pallete.mode],
+          ...uiConfigs.style.gradientBgImage[theme.palette.mode],
         },
       }}
     >

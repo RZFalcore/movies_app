@@ -20,6 +20,7 @@ const GlobalLoading = () => {
       clearTimeout(delay);
     };
   }, [globalLoading]);
+
   return (
     <Paper
       sx={{
